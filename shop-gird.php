@@ -119,7 +119,12 @@ include 'header.php';
                                                 text-overflow: ellipsis;
                                                 text-transform: uppercase;
                                             ">
-                                                <?= htmlspecialchars($fm->textShorten($resultProd['tenSanPham'], 400)); ?>
+                                                <?php 
+                                                            $productName = $resultProd['tenSanPham'];
+                                                            echo mb_strlen($productName, 'UTF-8') > 100 
+                                                                ? mb_substr($productName, 0, 99, 'UTF-8') . '...' 
+                                                                : $productName;
+                                                        ?>
                                             </span>
                                         </a>
 

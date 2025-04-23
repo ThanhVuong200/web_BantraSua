@@ -41,7 +41,9 @@ session_start();
 					  {
 						  if(isset($_POST['logout']))
 						  {
-							  unset($_SESSION['ten']);?>
+							  session_unset();
+							  session_destroy();
+							  ?>
 							  <script>window.location="index.php";</script>
 						 <?php }
 					  }

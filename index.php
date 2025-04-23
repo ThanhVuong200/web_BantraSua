@@ -46,15 +46,15 @@ include 'header.php';
                                         <div class="customar-comments-box">
                                         </div>
                                         <a href="single-product.php?maSanPham=<?php echo $resultProd['maSanPham']; ?>">
-    <span style="text-transform: uppercase;">
-        <?php 
-            $productName = $resultProd['tenSanPham'];
-            echo mb_strlen($productName, 'UTF-8') > 20 
-                ? mb_substr($productName, 0, 18, 'UTF-8') . '...' 
-                : $productName;
-        ?>
-    </span>
-</a>
+                                        <span style="text-transform: uppercase;">
+                                            <?php 
+                                                $productName = $resultProd['tenSanPham'];
+                                                echo mb_strlen($productName, 'UTF-8') > 20 
+                                                    ? mb_substr($productName, 0, 18, 'UTF-8') . '...' 
+                                                    : $productName;
+                                            ?>
+                                        </span>
+                                    </a>
 
                                         <div class="price-box">
                                             <span class="price"><?php echo number_format($giaSanPham); ?> VNĐ</span>

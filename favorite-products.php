@@ -1,10 +1,10 @@
 <?php 
-include_once 'config.php'; // Include file kết nối cơ sở dữ liệu
+include_once 'config.php';  
 include_once 'classes/category.php';
 include_once 'classes/product.php';
 include_once 'admin/helpers/format.php';
 
-session_start(); // Bắt đầu session để lấy thông tin khách hàng đăng nhập
+session_start();
 
 $fm = new Format();
 $prod = new product();
@@ -71,14 +71,20 @@ include 'header.php';
                                     <div class="product-info">
                                         <div class="customar-comments-box"></div>
                                         <a href="single-product.php?maSanPham=<?php echo $resultProd['maSanPham']; ?>">
-                                            <span style="text-transform: uppercase;">
-                                                <?php echo $fm->textShorten($resultProd['tenSanPham'], 20); ?>
-                                            </span>
+                                        <span style="text-transform: uppercase;">
+                                                        <?php 
+                                                            $productName = $resultProd['tenSanPham'];
+                                                            echo mb_strlen($productName, 'UTF-8') > 20 
+                                                                ? mb_substr($productName, 0, 18, 'UTF-8') . '...' 
+                                                                : $productName;
+                                                        ?>
+                                                    </span>
                                         </a>
                                         <div class="price-box">
                                             <span class="price"><?php echo number_format($giaSanPham); ?> VNĐ</span>
                                         </div>
                                     </div>
+                                                
                                 </div>
                             </li>
                             <?php 
