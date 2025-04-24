@@ -81,16 +81,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                             </td>
                             <td>
                                 <div id="size-container">
-                                    <div class="size-row">
-                                        <select name="sizes[]" class="inputAddProduct" style="width: 120px;" required>
-                                            <option value="">Chọn size</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                        </select>
-                                        <input type="number" name="prices[]" placeholder="Giá (VNĐ)" class="inputAddProduct" style="width: 150px;" required>
-                                        <input type="number" name="quantities[]" placeholder="Số lượng" class="inputAddProduct" style="width: 120px;"  required>
-                                    </div>
+                                <div class="size-row">
+                                    <select name="sizes[]" class="inputAddProduct" style="width: 120px;" required>
+                                        <option value="">Chọn size</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                    </select>
+                                    <input type="number" name="prices[]" placeholder="Giá (VNĐ)" class="inputAddProduct" style="width: 150px;" required>
+                                    <input type="number" name="quantities[]" placeholder="Số lượng" class="inputAddProduct" style="width: 120px;" required>
+                                    <button type="button" onclick="removeSizeRow(this)" class="btn btn-danger" style="margin-left: 10px;">Xóa</button>
+                                </div>
                                 </div>
                                 <button type="button" onclick="addSizeRow()" class="btn btn-primary" style="margin-top: 10px;">Thêm kích thước</button>
                             </td>
@@ -155,8 +156,19 @@ function addSizeRow() {
                        '<option value="L">L</option>' +
                        '</select>' +
                        '<input type="number" name="prices[]" placeholder="Giá (VNĐ)" class="inputAddProduct" style="width: 150px;" required>' +
-                       '<input type="number" name="quantities[]" placeholder="Số lượng" class="inputAddProduct" style="width: 120px;" value="1" required>';
+                       '<input type="number" name="quantities[]" placeholder="Số lượng" class="inputAddProduct" style="width: 120px;" value="1" required>' +
+                       '<button type="button" onclick="removeSizeRow(this)" class="btn btn-danger" style="margin-left: 10px;">Xóa</button>';
     container.appendChild(newRow);
+}
+
+function removeSizeRow(button) {
+    var container = document.getElementById('size-container');
+    // Ensure at least one row remains
+    if (container.getElementsByClassName('size-row').length > 1) {
+        button.parentElement.remove();
+    } else {
+        alert("Phải có ít nhất một kích thước!");
+    }
 }
 
 var loadFile = function(event) {
